@@ -7,7 +7,7 @@ type ProjectCardProps = {
 
 export default function ProjectCard({ title, tools }: ProjectCardProps) {
   return (
-    <div className="bg-white rounded-lg shadow-md overflow-hidden flex-shrink-0 w-72">
+    <div className="bg-white rounded-lg shadow-md overflow-hidden w-full">
       {/* Placeholder Gambar Proyek */}
       <div className="h-40 bg-gray-200 flex items-center justify-center">
         <PhotoIcon className="w-12 h-12 text-gray-400" />
