@@ -11,8 +11,11 @@ import StatCard from "./StatCard";
 import ProjectCard from "./ProjectCard";
 import Image from "next/image";
 import Link from "next/link";
+import { getGithubContributions } from "@/lib/github";
 
-export default function MainContent() {
+export default async function MainContent() {
+  const totalContributions = await getGithubContributions();
+
   return (
     <main className="flex-1 p-8 overflow-y-auto">
       {/* Header "Hello" */}
@@ -65,8 +68,8 @@ export default function MainContent() {
           <StatCard
             icon="assets/icons/clock_icon.svg"
             title="Contribution"
-            value="59"
-            subLabel="On GitHub"
+            value={totalContributions?.toString()}
+            subLabel="On GitHub last year"
           />
         </div>
       </section>
