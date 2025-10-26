@@ -13,7 +13,7 @@ export default function CertificateCard({ title }: CertificateCardProps) {
       </div>
       {/* Judul */}
       <div className="p-4">
-        <h3 className="text-lg font-semibold text-center text-gray-800">
+        <h3 className="text-lg font-semibold text-color-primary">
           {title}
         </h3>
       </div>

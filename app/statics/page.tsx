@@ -7,8 +7,9 @@ import {
 } from "@heroicons/react/24/outline";
 
 const projectStats = [
-  { label: "Mobile Project", value: 10 },
-  { label: "Web Project", value: 6 },
+  { label: "All Projects", value: 16 },
+  { label: "Mobile Projects", value: 10 },
+  { label: "Web Projects", value: 6 },
 ];
 
 const toolStats = [
