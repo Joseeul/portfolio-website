@@ -162,7 +162,6 @@ export default async function RightGutter() {
           Recent Activity
         </h2>
 
-        {/* --- GANTI BAGIAN UL INI --- */}
         <ul className="space-y-6 max-h-80 overflow-y-auto">
           {recentActivity && recentActivity.length > 0 ? (
             recentActivity.map((activity) => (
