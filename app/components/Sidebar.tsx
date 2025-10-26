@@ -77,25 +77,45 @@ export default function Sidebar() {
 
       {/* Link Sosial Media */}
       <div>
-        <h3 className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-4">
-          Social
-        </h3>
+        <h3 className="text-xl font-medium text-color-primary mb-4">Social</h3>
         <div className="flex justify-around items-center">
-          {/* Catatan: Heroicons tidak memiliki ikon brand (LinkedIn, GitHub, dll). 
-            Ini adalah placeholder. Anda mungkin perlu library lain seperti 'react-icons' 
-            atau menggunakan SVG kustom untuk ikon sosial.
-          */}
-          <a href="#" className="text-gray-400 hover:text-gray-600">
-            <GlobeAltIcon className="w-6 h-6" />
+          <a
+            href="https://www.linkedin.com/in/jose-andreas-64b857387/"
+            target="_blank"
+          >
+            <Image
+              src="assets/icons/linkedin_icon.svg"
+              alt="Career"
+              width={24}
+              height={24}
+            />
           </a>
-          <a href="#" className="text-gray-400 hover:text-gray-600">
-            <CodeBracketIcon className="w-6 h-6" />
+          <a href="https://github.com/Joseeul" target="_blank">
+            <Image
+              src="assets/icons/github_icon.svg"
+              alt="Career"
+              width={24}
+              height={24}
+            />
           </a>
-          <a href="#" className="text-gray-400 hover:text-gray-600">
-            <ChatBubbleOvalLeftIcon className="w-6 h-6" />
+          <a
+            href="https://discord.com/users/891865248179576853"
+            target="_blank"
+          >
+            <Image
+              src="assets/icons/discord_icon.svg"
+              alt="Career"
+              width={24}
+              height={24}
+            />
           </a>
-          <a href="#" className="text-gray-400 hover:text-gray-600">
-            <CameraIcon className="w-6 h-6" />
+          <a href="https://www.instagram.com/joseandreas54/" target="_blank">
+            <Image
+              src="assets/icons/instagram_icon.svg"
+              alt="Career"
+              width={24}
+              height={24}
+            />
           </a>
         </div>
       </div>

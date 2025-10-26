@@ -62,7 +62,7 @@ export default async function MainContent() {
           <StatCard
             icon="assets/icons/folder_icon.svg"
             title="Projects"
-            value="15"
+            value="7"
             subLabel="Total Projects"
           />
           <StatCard
