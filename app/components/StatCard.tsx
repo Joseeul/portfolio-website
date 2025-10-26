@@ -4,7 +4,7 @@ import { ReactNode } from "react";
 type StatCardProps = {
   icon: string;
   title: string;
-  value: string;
+  value: string | undefined;
   subLabel: string;
 };
 
