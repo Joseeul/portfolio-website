@@ -15,23 +15,20 @@ const projectStats = [
 const toolStats = [
   // Catatan: Ganti 'icon' dengan <img> atau SVG kustom untuk logo aslinya
   {
-    icon: <PhotoIcon className="w-6 h-6 text-pink-500" />,
     label: "Figma",
     value: 8,
   },
   {
-    icon: <CodeBracketIcon className="w-6 h-6 text-blue-400" />,
     label: "Flutter",
     value: 8,
   },
   {
-    icon: <CpuChipIcon className="w-6 h-6 text-green-500" />,
     label: "Android Studio",
     value: 8,
   },
 ];
 
-export default function Statics() {
+export default async function Statics() {
   return (
     <div className="flex min-h-screen p-5 background-color-primary">
       {/* Sidebar Kiri */}
@@ -77,10 +74,8 @@ export default function Statics() {
               {toolStats.map((tool) => (
                 <div key={tool.label}>
                   <div className="flex justify-between items-center text-gray-700">
-                    <div className="flex items-center gap-3">
-                      {tool.icon}
-                      <span className="font-medium">{tool.label}</span>
-                    </div>
+                    <span className="font-medium">{tool.label}</span>
+
                     <span className="font-bold text-lg">{tool.value}</span>
                   </div>
                   <hr className="mt-2 border-gray-100" />
