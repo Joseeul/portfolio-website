@@ -1,20 +1,46 @@
-import {
-  PhotoIcon,
-  ChartPieIcon,
-  StarIcon,
-  BriefcaseIcon,
-  FolderOpenIcon,
-  UsersIcon,
-  SparklesIcon,
-} from "@heroicons/react/24/outline";
 import StatCard from "./StatCard";
 import ProjectCard from "./ProjectCard";
 import Image from "next/image";
 import Link from "next/link";
 import { getGithubContributions } from "@/lib/github";
+import { supabase } from "@/lib/supabaseClient";
+import { Project } from "@/types";
+
+async function getFeaturedProjects(): Promise<Project[]> {
+  // Ganti 'projects' dengan nama tabel Anda
+  const { data, error } = await supabase
+    .from("projects")
+    .select("*")
+    .eq("is_featured", true);
+
+  if (error) {
+    console.error("Error fetching featured projects:", error);
+    return [];
+  }
+
+  return (data as Project[]) || [];
+}
+
+async function getProjectCount(): Promise<number> {
+  const { count, error } = await supabase
+    .from("projects")
+    .select("*", { count: "exact", head: true });
+
+  if (error) {
+    console.error("Error fetching project count:", error);
+    return 0;
+  }
+
+  return count || 0;
+}
 
 export default async function MainContent() {
-  const totalContributions = await getGithubContributions();
+  const [totalContributions, featuredProjects, totalProjectCount] =
+    await Promise.all([
+      getGithubContributions(),
+      getFeaturedProjects(),
+      getProjectCount(),
+    ]);
 
   return (
     <main className="flex-1 p-8 overflow-y-auto">
@@ -22,7 +48,7 @@ export default async function MainContent() {
       <section className="text-center mb-12">
         <div>
           <h1 className="text-5xl font-bold mb-2 text-color-primary">
-            Hello 👋, I'm <span className="text-color-blue">Jose</span>
+            Hello 👋 I'm <span className="text-color-blue">Jose</span>
           </h1>
           <p className="text-xl font-medium text-color-primary">
             I'm a mobile application developer.
@@ -36,7 +62,7 @@ export default async function MainContent() {
       </section>
 
       {/* Career Stats */}
-      <section className="mb-12 bg-white p-5 rounded-lg border border-custom-color border-[0.5px]">
+      <section className="mb-12 bg-white p-5 rounded-lg border-custom-color border-[0.5px]">
         <h2 className="text-2xl font-medium mb-6 flex items-center gap-2 text-color-blue">
           <Image
             src="assets/icons/stats_icon.svg"
@@ -62,20 +88,20 @@ export default async function MainContent() {
           <StatCard
             icon="assets/icons/folder_icon.svg"
             title="Projects"
-            value="7"
+            value={totalProjectCount.toString()}
             subLabel="Total Projects"
           />
           <StatCard
             icon="assets/icons/clock_icon.svg"
             title="Contribution"
-            value={totalContributions?.toString()}
+            value={totalContributions?.toString() || "0"}
             subLabel="On GitHub last year"
           />
         </div>
       </section>
 
       {/* Featured Projects */}
-      <section className="p-5 rounded-lg border border-custom-color border-[0.5px] bg-white overflow-x-hidden">
+      <section className="p-5 rounded-lg border-custom-color border-[0.5px] bg-white overflow-x-hidden">
         <h2 className="text-2xl mb-6 flex items-center gap-2 font-medium text-color-blue">
           <Image
             src="assets/icons/thumb_icon.svg"
@@ -87,17 +113,16 @@ export default async function MainContent() {
         </h2>
         {/* Kontainer dengan horizontal scroll */}
         <div className="flex gap-6 pb-4 -mx-8 px-8 overflow-x-auto">
-          <ProjectCard
-            title="Picverse"
-            tools={["Figma", "HTML", "CSS", "JavaScript"]}
-          />
-          <ProjectCard title="EV Route Planner" tools={["Figma"]} />
-          <ProjectCard
-            title="LOLgic"
-            tools={["Figma", "SQLite", "Android Studio"]}
-          />
-          <ProjectCard title="Shadow" tools={["Figma", "Firebase"]} />
-          {/* Tambahkan kartu lain di sini untuk melihat efek scroll */}
+          {/* Loop data dari Supabase, bukan dummy data lagi */}
+          {featuredProjects.map((project) => (
+            <ProjectCard
+              key={project.id}
+              title={project.title}
+              tools={project.tools_used}
+              thumbnailUrl={project.thumbnail_url}
+              githubLink={project.github_link}
+            />
+          ))}
         </div>
       </section>
     </main>
