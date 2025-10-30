@@ -5,20 +5,21 @@ import {
   FolderIcon,
   AcademicCapIcon,
   ChartBarIcon,
-  GlobeAltIcon,
-  CodeBracketIcon,
-  ChatBubbleOvalLeftIcon,
-  CameraIcon,
+  Bars3Icon,
+  XMarkIcon,
 } from "@heroicons/react/24/outline";
 import SidebarNavItem from "./SidebarNavItem";
 import { usePathname } from "next/navigation";
 import Image from "next/image";
+import { useState } from "react";
 
 export default function Sidebar() {
   const pathname = usePathname();
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-  return (
-    <aside className="w-64 flex-shrink-0 bg-white border rounded-lg border-custom-color border-[0.5px] p-6 flex flex-col">
+  // Konten sidebar kita pindahkan ke variabel agar bisa di-reuse
+  const sidebarContent = (
+    <>
       {/* Bagian Profile */}
       <div className="flex flex-col items-center mb-8">
         <div className="w-24 h-24 rounded-full overflow-hidden flex items-center justify-center mb-4">
@@ -119,6 +120,79 @@ export default function Sidebar() {
           </a>
         </div>
       </div>
-    </aside>
+    </>
+  );
+
+  return (
+    <>
+      {/* 1. Tombol Hamburger (Hanya Mobile) - Style disamakan */}
+      <button
+        onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+        className="lg:hidden fixed top-5 left-5 z-50 p-2 bg-white rounded-full shadow-lg text-color-primary"
+        aria-label="Toggle menu"
+      >
+        {isMobileMenuOpen ? (
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="h-6 w-6"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            strokeWidth={2}
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M6 18L18 6M6 6l12 12"
+            />
+          </svg>
+        ) : (
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="h-6 w-6"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            strokeWidth={2}
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M4 6h16M4 12h16M4 18h7"
+            />
+          </svg>
+        )}
+      </button>
+
+      {/* 2. Sidebar Desktop (Hanya LG ke atas) */}
+      <aside className="hidden lg:flex w-64 shrink-0 bg-white rounded-lg border-custom-color border-[0.5px] p-6 flex-col">
+        {sidebarContent}
+      </aside>
+
+      {/* 3. Backdrop (Hanya Mobile saat menu terbuka) */}
+      {isMobileMenuOpen && (
+        <div
+          onClick={() => setIsMobileMenuOpen(false)}
+          className="lg:hidden fixed inset-0 bg-black/30 z-30"
+          aria-hidden="true"
+        />
+      )}
+
+      {/* 4. Menu Mobile (Drawer) - Logika disamakan */}
+      <aside
+        className={`
+          ${/* ----- Style Mobile: Panel geser dari kiri ----- */ ""}
+          fixed top-0 left-0 w-64 h-full bg-white p-6 flex flex-col z-40 overflow-y-auto
+          transition-transform duration-300 ease-in-out
+          ${isMobileMenuOpen ? "translate-x-0" : "-translate-x-full"}
+
+          ${/* ----- Style Desktop: Sembunyikan ----- */ ""}
+          lg:hidden
+        `}
+      >
+        {/* Tombol Tutup (X) internal dihapus, karena sudah dihandle tombol utama */}
+        {sidebarContent}
+      </aside>
+    </>
   );
 }
