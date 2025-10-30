@@ -7,3 +7,10 @@ export type Project = {
   is_featured: boolean;
   github_link: string;
 };
+
+export type Certificate = {
+  id: number;
+  title: string;
+  image_url: string;
+  created_at: string;
+}
