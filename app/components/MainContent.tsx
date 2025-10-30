@@ -49,12 +49,12 @@ export default async function MainContent() {
       <section className="text-center mb-12">
         <div>
           {/* Responsive: text-3xl di mobile, sm:text-4xl, md:text-5xl di desktop */}
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-2 text-color-primary">
-            Hello 👋 I'm <span className="text-color-blue">Jose</span>
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-2 text-color-primary mt-10 sm:mt-0">
+            Hello there I'm <span className="text-color-blue">Jose 👋</span>
           </h1>
           {/* Responsive: text-lg di mobile, text-xl di desktop */}
           <p className="text-lg md:text-xl font-medium text-color-primary">
-            I'm a mobile application developer.
+            Code. Design. Deploy. Repeat.
           </p>
           <Link href="/projects">
             <button className="mt-6 background-color-blue text-white py-3 px-6 rounded-lg font-medium hover:cursor-pointer">
