@@ -103,27 +103,34 @@ export default async function Statics() {
   ];
 
   return (
-    <div className="flex min-h-screen p-5 background-color-primary">
+    // PERUBAHAN: flex-col untuk mobile, md:flex-row untuk desktop, dan p-3 sm:p-5
+    <div className="flex flex-col md:flex-row min-h-screen p-3 sm:p-5 background-color-primary">
       {/* Sidebar Kiri */}
       <Sidebar />
 
-      <main className="flex-1 ml-5">
+      {/* PERUBAHAN: mt-5 & md:mt-0 untuk jarak di mobile, md:ml-5 untuk jarak di desktop */}
+      <main className="flex-1 mt-5 md:mt-0 md:ml-5">
         <div className="bg-white p-5 rounded-lg border-custom-color border-[0.5px]">
           <h1 className="text-xl font-medium text-color-primary mb-6">
             Github Contribution
           </h1>
 
-          <div className="flex justify-center">
+          {/* PERUBAHAN: overflow-x-auto agar kalender bisa di-scroll di mobile */}
+          <div className="flex justify-center overflow-x-auto">
             <GitHubActivityCalendar />
           </div>
         </div>
-        <div className="flex justify-between items-start mt-5">
+        
+        {/* PERUBAHAN: flex-col (mobile), lg:flex-row (desktop), dan gap-5 */}
+        <div className="flex flex-col lg:flex-row justify-between items-start mt-5 gap-5">
+          {/* PERUBAHAN: w-full (mobile), lg:w-xs (desktop) */}
           <img
             src="https://github-readme-stats.vercel.app/api/top-langs/?username=joseeul"
             alt="Top Languages"
-            className="w-xs"
+            className="w-full lg:w-xs"
           />
-          <div className="bg-white w-lg p-5 rounded-lg border-custom-color border-[0.5px] h-76">
+          {/* PERUBAHAN: w-full (mobile), lg:w-lg (desktop), h-auto (mobile), lg:h-76 (desktop), dan overflow-y-auto */}
+          <div className="bg-white w-full lg:w-lg p-5 rounded-lg border-custom-color border-[0.5px] h-auto lg:h-76 overflow-y-auto">
             <h2 className="text-xl font-semibold text-gray-800 mb-6">
               All Time Projects Statics
             </h2>
@@ -139,7 +146,8 @@ export default async function Statics() {
               ))}
             </div>
           </div>
-          <div className="bg-white w-lg p-5 rounded-lg border-custom-color border-[0.5px] overflow-x-hidden h-76">
+          {/* PERUBAHAN: w-full (mobile), lg:w-lg (desktop), h-auto (mobile), lg:h-76 (desktop), dan overflow-y-auto */}
+          <div className="bg-white w-full lg:w-lg p-5 rounded-lg border-custom-color border-[0.5px] h-auto lg:h-76 overflow-y-auto">
             <h2 className="text-xl font-semibold text-gray-800 mb-6">
               All Time Tools Used Statics
             </h2>
