@@ -46,62 +46,61 @@ export default function Footer() {
         </div>
 
         {/* Bagian Bawah: Media Sosial */}
-        <div className="flex flex-col items-center">
-          <div className="flex space-x-6">
-            {/* --- Menggunakan <img> tag --- */}
 
-            <a
-              href="https://www.linkedin.com/in/jose-andreas-64b857387/"
-              aria-label="Linkedin"
-              target="_blank"
-              className="hover:opacity-75 transition-opacity"
-            >
-              <img
-                src="/assets/icons/linkedin_white.svg" // Ganti dengan path Anda
-                alt="Linkedin"
-                className="w-6 h-6"
-              />
-            </a>
+        <div className="flex space-x-6">
+          {/* --- Menggunakan <img> tag --- */}
 
-            <a
-              href="https://github.com/Joseeul"
-              aria-label="GitHub"
-              target="_blank"
-              className="hover:opacity-75 transition-opacity"
-            >
-              <img
-                src="/assets/icons/github_white.svg" // Ganti dengan path Anda
-                alt="GitHub"
-                className="w-6 h-6"
-              />
-            </a>
+          <a
+            href="https://www.linkedin.com/in/jose-andreas-64b857387/"
+            aria-label="Linkedin"
+            target="_blank"
+            className="hover:opacity-75 transition-opacity"
+          >
+            <img
+              src="/assets/icons/linkedin_white.svg" // Ganti dengan path Anda
+              alt="Linkedin"
+              className="w-6 h-6"
+            />
+          </a>
 
-            <a
-              href="https://discord.com/users/891865248179576853"
-              aria-label="Discord"
-              target="_blank"
-              className="hover:opacity-75 transition-opacity"
-            >
-              <img
-                src="/assets/icons/discord_white.svg" // Ganti dengan path Anda
-                alt="Discord"
-                className="w-6 h-6"
-              />
-            </a>
+          <a
+            href="https://github.com/Joseeul"
+            aria-label="GitHub"
+            target="_blank"
+            className="hover:opacity-75 transition-opacity"
+          >
+            <img
+              src="/assets/icons/github_white.svg" // Ganti dengan path Anda
+              alt="GitHub"
+              className="w-6 h-6"
+            />
+          </a>
 
-            <a
-              href="https://www.instagram.com/joseandreas54/"
-              aria-label="Instagram"
-              target="_blank"
-              className="hover:opacity-75 transition-opacity"
-            >
-              <img
-                src="/assets/icons/instagram_white.svg" // Ganti dengan path Anda
-                alt="Instagram"
-                className="w-6 h-6"
-              />
-            </a>
-          </div>
+          <a
+            href="https://discord.com/users/891865248179576853"
+            aria-label="Discord"
+            target="_blank"
+            className="hover:opacity-75 transition-opacity"
+          >
+            <img
+              src="/assets/icons/discord_white.svg" // Ganti dengan path Anda
+              alt="Discord"
+              className="w-6 h-6"
+            />
+          </a>
+
+          <a
+            href="https://www.instagram.com/joseandreas54/"
+            aria-label="Instagram"
+            target="_blank"
+            className="hover:opacity-75 transition-opacity"
+          >
+            <img
+              src="/assets/icons/instagram_white.svg" // Ganti dengan path Anda
+              alt="Instagram"
+              className="w-6 h-6"
+            />
+          </a>
         </div>
       </div>
     </footer>
