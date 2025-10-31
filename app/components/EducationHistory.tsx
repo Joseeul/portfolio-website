@@ -12,29 +12,21 @@ interface ExperienceItem {
 
 const experienceData: ExperienceItem[] = [
   {
-    company: "Cognizant",
-    location: "Mumbai",
-    date: "Sep 2016 - July 2020",
-    title: "Experience Designer",
+    company: "Bina Nusantara University",
+    location: "Jakarta",
+    date: "Aug 2023 - present",
+    title: "Mobile Application & Technology",
     description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis lacus nunc, posuere in justo vulputate, bibendum sodales.",
-    dotType: "outline",
-  },
-  {
-    company: "Sugee Pvt limited",
-    location: "Mumbai",
-    date: "Sep 2020 - July 2023",
-    title: "UI/UX Designer",
-    description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis lacus nunc, posuere in justo vulputate, bibendum sodales.",
+      "I am currently a fifth-semester student at Bina Nusantara University, majoring in Mobile Application & Technology. Beyond developing mobile apps, I also build websites and work across both frontend and backend development.",
     dotType: "solid",
   },
   {
-    company: "Cinetstox",
-    location: "Mumbai",
-    date: "Sep 2023",
-    title: "Lead UX Designer",
-    description: null,
+    company: "SMK Santa Maria",
+    location: "Jakarta",
+    date: "Jul 2020 - Apr 2023",
+    title: "Multimedia",
+    description:
+      "I create visual communication designs, including posters, animations, and short films. In addition, I’m also learning programming languages to expand my creative and technical capabilities.",
     dotType: "outline",
   },
 ];
@@ -57,7 +49,7 @@ export default function EducationHistory() {
     <section className="bg-white text-brand-dark-blue py-24 sm:py-32">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Judul Section */}
-        <div className="text-center mb-16 md:mb-20">
+        <div className="text-center mb-16 md:mb-20 text-color-blue">
           <h2 className="text-4xl md:text-5xl font-bold">
             My Education <span className="text-brand-orange">History</span>
           </h2>
@@ -73,7 +65,7 @@ export default function EducationHistory() {
               >
                 {/* Kolom Kiri: Perusahaan & Tanggal (rata kanan) */}
                 <div className="text-right pt-1">
-                  <h3 className="text-xl md:text-2xl font-bold text-brand-dark-blue">
+                  <h3 className="text-xl md:text-2xl font-bold text-color-primary">
                     {item.company}, {item.location}
                   </h3>
                   <p className="text-gray-500 mt-1">{item.date}</p>
@@ -91,7 +83,7 @@ export default function EducationHistory() {
 
                 {/* Kolom Kanan: Jabatan & Deskripsi (rata kiri) */}
                 <div className="text-left pt-1">
-                  <h3 className="text-xl md:text-2xl font-bold text-brand-dark-blue">
+                  <h3 className="text-xl md:text-2xl font-bold text-color-primary">
                     {item.title}
                   </h3>
                   {/* Tampilkan deskripsi hanya jika ada */}

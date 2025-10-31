@@ -12,12 +12,30 @@ interface ExperienceItem {
 
 const experienceData: ExperienceItem[] = [
   {
-    company: "ANKER Indonesia",
+    company: "Bina Nusantara University",
     location: "Jakarta",
-    date: "Jun 2022 - Dec 2022",
-    title: "Graphic Designer",
+    date: "Sep 2024 - Jul 2025",
+    title: "Freshmen Partner",
     description:
-      "At Anker Indonesia, I create social media visuals and e-commerce designs, alongside producing video content that drives engagement.",
+      "I support new students throughout their first two semesters, helping them adapt to campus life and academic responsibilities.",
+    dotType: "solid",
+  },
+  {
+    company: "Bina Nusantara University",
+    location: "Jakarta",
+    date: "Jul 2024 - Sep 2024",
+    title: "Freshmen Leader",
+    description:
+      "I assist new students in familiarizing themselves with the campus environment and understanding the academic programs offered.",
+    dotType: "solid",
+  },
+  {
+    company: "Bina Nusantara University",
+    location: "Jakarta",
+    date: "Feb 2023 - Feb 2024",
+    title: "Activist at Keluarga Mahasiswa Katolik (KMK)",
+    description:
+      "I contribute as a logistics volunteer, assisting with equipment and operational needs.",
     dotType: "solid",
   },
 ];
@@ -34,7 +52,7 @@ const TimelineDot: React.FC<{ type: "outline" | "solid" }> = ({ type }) => {
 };
 // --- AKHIR PERUBAHAN ---
 
-export default function WorkExperience() {
+export default function ActivityAndProjects() {
   return (
     // Section dengan background putih
     <section className="bg-white text-brand-dark-blue py-24 sm:py-32">
@@ -42,7 +60,7 @@ export default function WorkExperience() {
         {/* Judul Section */}
         <div className="text-center mb-16 md:mb-20 text-color-blue">
           <h2 className="text-4xl md:text-5xl font-bold ">
-            My Work <span className="text-brand-orange">Experience</span>
+            My Activities and <span className="text-brand-orange">Projects</span>
           </h2>
         </div>
 
@@ -51,7 +69,7 @@ export default function WorkExperience() {
           <div className="relative space-y-0">
             {experienceData.map((item, index) => (
               <div
-                key={item.company}
+                key={item.title}
                 className="grid grid-cols-[1fr_auto_1fr] md:gap-x-12 gap-x-6 items-start"
               >
                 {/* Kolom Kiri: Perusahaan & Tanggal (rata kanan) */}

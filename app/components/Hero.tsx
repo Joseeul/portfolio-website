@@ -8,30 +8,24 @@ export default function Hero() {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
         {/* Kolom Kiri: Teks */}
         <div className="space-y-6 z-40">
-          <span className="text-lg font-medium text-brand-dark">
-            UX Designer
+          <span className="text-lg font-medium text-color-primary">
+            Mobile/Web Application Developer
           </span>
-          <h1 className="text-5xl md:text-6xl font-bold text-brand-dark leading-tight">
+          <h1 className="text-5xl md:text-6xl font-bold text-color-primary leading-tight">
             Hi There, I'm <br />
-            <span className="text-brand-red">Sarah Jones</span>
+            <span className="text-color-blue">Jose 👋</span>
           </h1>
-          <p className="text-lg text-gray-700 max-w-md">
-            Welcome to my portfolio of captivating digital experiences. Explore
-            my work and let's create something extraordinary together.
+          <p className="text-lg text-color-primary max-w-md">
+            Hi there! I'm a mobile/web developer passionate about building
+            intuitive digital journeys. Let’s create something amazing together!
           </p>
           {/* Tombol Aksi */}
           <div className="flex space-x-4 pt-4">
             <Link
-              href="/contact"
-              className="bg-brand-dark text-white px-8 py-3 rounded-md font-medium hover:bg-opacity-80 transition-colors"
+              href="/projects"
+              className="bg-white text-color-blue border border-custom-color px-8 py-3 rounded-md font-medium"
             >
-              Hire Me
-            </Link>
-            <Link
-              href="/portfolio"
-              className="bg-white text-brand-dark border border-gray-300 px-8 py-3 rounded-md font-medium hover:bg-gray-50 transition-colors"
-            >
-              Portfolio
+              Explore my projects
             </Link>
           </div>
         </div>
@@ -53,7 +47,7 @@ export default function Hero() {
 
           {/* Elemen Dekoratif */}
           <div
-            className="absolute top-20 left-10 md:left-20 text-brand-dark text-4xl font-mono z-20"
+            className="absolute top-20 left-10 md:left-20 text-color-blue text-4xl font-mono z-20"
             aria-hidden="true"
           >
             ~~~
@@ -67,7 +61,7 @@ export default function Hero() {
             <span className="block w-2 h-2 bg-brand-dark rounded-full"></span>
           </div>
           <div
-            className="absolute bottom-20 right-10 md:right-20 text-brand-dark text-3xl font-mono z-20"
+            className="absolute bottom-20 right-10 md:right-20 text-color-blue text-3xl font-mono z-20"
             aria-hidden="true"
           >
             &darr;&darr;&darr;
@@ -80,14 +74,14 @@ export default function Hero() {
               - Letakkan gambar Anda di dalam folder /public (misal: /public/sarah-jones-portrait.png).
               - Gambar HARUS berformat PNG dengan latar belakang transparan.
             */}
-            <Image
-              src="/sarah-jones-portrait.png"
+            {/* <Image
+              src="/assets/images/avatar_emoji.png"
               alt="Portrait of Sarah Jones"
               width={400}
               height={600}
               className="object-cover object-top w-auto h-full max-h-[600px]"
               priority
-            />
+            /> */}
           </div>
         </div>
       </div>

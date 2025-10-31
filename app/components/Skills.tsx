@@ -11,40 +11,76 @@ interface Skill {
 // Data kategori skill
 const skillCategories = [
   {
-    title: "Web Development",
+    title: "Mobile App Development",
     skills: [
-      { name: "Javascript", iconSrc: "/assets/icons/code_icon.svg" },
-      { name: "Typescript", iconSrc: "/assets/icons/code_icon.svg" },
-      { name: "Sass/Scss", iconSrc: "/assets/icons/code_icon.svg" },
-      { name: "Tailwindcss", iconSrc: "/assets/icons/code_icon.svg" },
-      { name: "Figma", iconSrc: "/assets/icons/code_icon.svg" },
+      {
+        name: "React Native",
+        iconSrc: "assets/icons/iconSkills/react_native.svg",
+      },
+      {
+        name: "Flutter",
+        iconSrc: "assets/icons/iconSkills/flutter_logo.svg",
+      },
+      {
+        name: "Swift",
+        iconSrc: "assets/icons/iconSkills/swift_logo.svg",
+      },
+      {
+        name: "Android",
+        iconSrc: "assets/icons/iconSkills/android_logo.svg",
+      },
     ],
   },
   {
-    title: "Frameworks & Library",
+    title: "Web Development",
     skills: [
-      { name: "React", iconSrc: "/assets/icons/code_icon.svg" },
-      { name: "Next.js", iconSrc: "/assets/icons/code_icon.svg" },
-      { name: "Express.js", iconSrc: "/assets/icons/code_icon.svg" },
-      { name: "Nest.js", iconSrc: "/assets/icons/code_icon.svg" },
-      { name: "Storybook", iconSrc: "/assets/icons/code_icon.svg" },
-      { name: "Cypress", iconSrc: "/assets/icons/code_icon.svg" },
+      { name: "ReactJS", iconSrc: "assets/icons/iconSkills/react_logo.svg" },
+      { name: "HTML", iconSrc: "assets/icons/iconSkills/html_logo.svg" },
+      { name: "CSS", iconSrc: "assets/icons/iconSkills/css_logo.svg" },
+      { name: "Javascript", iconSrc: "assets/icons/iconSkills/js_logo.svg" },
     ],
   },
   {
     title: "Backend Development",
     skills: [
-      { name: "Node.js", iconSrc: "/assets/icons/code_icon.svg" },
-      { name: "Socket.io", iconSrc: "/assets/icons/code_icon.svg" },
-      { name: "PostgreSQL", iconSrc: "/assets/icons/code_icon.svg" },
-      { name: "MongoDB", iconSrc: "/assets/icons/code_icon.svg" },
-      { name: "Git", iconSrc: "/assets/icons/code_icon.svg" },
+      {
+        name: "Firebase",
+        iconSrc: "assets/icons/iconSkills/firebase_logo.svg",
+      },
+      {
+        name: "Supabase",
+        iconSrc: "assets/icons/iconSkills/supabase_logo.svg",
+      },
+      { name: "Appwrite", iconSrc: "assets/icons/iconSkills/aw_logo.svg" },
+      { name: "MongoDB", iconSrc: "assets/icons/iconSkills/mdb_logo.svg" },
+      {
+        name: "PostgreSQL",
+        iconSrc: "assets/icons/iconSkills/postgre_logo.svg",
+      },
+      {
+        name: "MySQL",
+        iconSrc: "assets/icons/iconSkills/msql_logo.svg",
+      },
     ],
   },
   {
-    title: "Mobile App Development",
+    title: "Frameworks & Library",
     skills: [
-      { name: "React (Native)", iconSrc: "/assets/icons/code_icon.svg" },
+      { name: "React", iconSrc: "assets/icons/iconSkills/react_logo.svg" },
+      { name: "Next.js", iconSrc: "assets/icons/iconSkills/nextjs_logo.svg" },
+      {
+        name: "Express.js",
+        iconSrc: "assets/icons/iconSkills/express_logo.svg",
+      },
+      { name: "Node.js", iconSrc: "assets/icons/iconSkills/njs_logo.svg" },
+      {
+        name: "Tailwind CSS",
+        iconSrc: "assets/icons/iconSkills/tailwind_logo.svg",
+      },
+      {
+        name: "Bootstrap",
+        iconSrc: "assets/icons/iconSkills/bootstrap_logo.svg",
+      },
     ],
   },
 ];
@@ -61,17 +97,19 @@ const SkillIcon: React.FC<{ skill: Skill }> = ({ skill }) => (
         sizes="(max-width: 768px) 64px, 80px"
       />
     </div>
-    <span className="text-sm md:text-base text-gray-700">{skill.name}</span>
+    <span className="text-sm md:text-base text-color-primary">
+      {skill.name}
+    </span>
   </div>
 );
 
 // Komponen Utama
 export default function Skills() {
   return (
-    <section className="bg-white text-brand-dark py-24 sm:py-32">
+    <section className="bg-white py-24 sm:py-32">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col items-center text-center mb-16 md:mb-20">
-          <p className="text-xl md:text-2xl text-gray-600">
+          <p className="text-xl md:text-2xl text-color-primary">
             The skills, tools and technologies I am really good at:
           </p>
         </div>
@@ -81,7 +119,7 @@ export default function Skills() {
             <div key={category.title}>
               {/* --- PERUBAHAN DI SINI --- */}
               {/* Menghapus 'md:text-left' agar selalu rata tengah */}
-              <h3 className="text-2xl md:text-3xl font-semibold text-brand-dark mb-8 text-center">
+              <h3 className="text-2xl md:text-3xl font-semibold text-color-blue mb-8 text-center">
                 {category.title}
               </h3>
 

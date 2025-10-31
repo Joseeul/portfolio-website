@@ -4,103 +4,103 @@ import Link from "next/link";
 export default function Footer() {
   return (
     // Pastikan Anda memiliki 'brand-dark' dan 'brand-red' di tailwind.config.ts
-    <footer className="bg-gray-500 text-white py-16">
+    <footer className="background-color-blue text-white py-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Bagian Atas: Navigasi & Logo */}
         <div className="flex flex-col md:flex-row justify-between items-center space-y-8 md:space-y-0 mb-16 text-center md:text-left">
           {/* Link Kiri */}
           <div className="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-8 text-lg font-medium order-2 md:order-1">
-            <Link
-              href="/about"
-              className="hover:text-gray-300 transition-colors"
-            >
-              About
+            <Link href="/" className="hover:text-gray-300 transition-colors">
+              Home
             </Link>
             <Link
-              href="/services"
+              href="/projects"
               className="hover:text-gray-300 transition-colors"
             >
-              Services
+              Projects
             </Link>
           </div>
 
           {/* Logo Tengah */}
           <div className="order-1 md:order-2">
             <Link href="/" className="text-3xl font-bold">
-              SJ<span className="text-brand-red">Design</span>
+              Jose<span className="text-brand-red"> Andreas</span>
             </Link>
           </div>
 
           {/* Link Kanan */}
           <div className="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-8 text-lg font-medium order-3">
             <Link
-              href="/portfolio"
+              href="/certificate"
               className="hover:text-gray-300 transition-colors"
             >
-              Portfolio
+              Certificate
             </Link>
             <Link
-              href="/blog"
+              href="/statics"
               className="hover:text-gray-300 transition-colors"
             >
-              Blog
+              Statics
             </Link>
           </div>
         </div>
 
         {/* Bagian Bawah: Media Sosial */}
         <div className="flex flex-col items-center">
-          <p className="text-gray-400 mb-4">Follow me on social media:</p>
           <div className="flex space-x-6">
             {/* --- Menggunakan <img> tag --- */}
 
-            <Link
-              href="#"
-              aria-label="Instagram"
+            <a
+              href="https://www.linkedin.com/in/jose-andreas-64b857387/"
+              aria-label="Linkedin"
+              target="_blank"
               className="hover:opacity-75 transition-opacity"
             >
               <img
-                src="/assets/icons/code_icon.svg" // Ganti dengan path Anda
+                src="/assets/icons/linkedin_white.svg" // Ganti dengan path Anda
+                alt="Linkedin"
+                className="w-6 h-6"
+              />
+            </a>
+
+            <a
+              href="https://github.com/Joseeul"
+              aria-label="GitHub"
+              target="_blank"
+              className="hover:opacity-75 transition-opacity"
+            >
+              <img
+                src="/assets/icons/github_white.svg" // Ganti dengan path Anda
+                alt="GitHub"
+                className="w-6 h-6"
+              />
+            </a>
+
+            <a
+              href="https://discord.com/users/891865248179576853"
+              aria-label="Discord"
+              target="_blank"
+              className="hover:opacity-75 transition-opacity"
+            >
+              <img
+                src="/assets/icons/discord_white.svg" // Ganti dengan path Anda
+                alt="Discord"
+                className="w-6 h-6"
+              />
+            </a>
+
+            <a
+              href="https://www.instagram.com/joseandreas54/"
+              aria-label="Instagram"
+              target="_blank"
+              className="hover:opacity-75 transition-opacity"
+            >
+              <img
+                src="/assets/icons/instagram_white.svg" // Ganti dengan path Anda
                 alt="Instagram"
                 className="w-6 h-6"
               />
-            </Link>
-
-            <Link
-              href="#"
-              aria-label="Twitter"
-              className="hover:opacity-75 transition-opacity"
-            >
-              <img
-                src="/assets/icons/code_icon.svg" // Ganti dengan path Anda
-                alt="Twitter"
-                className="w-6 h-6"
-              />
-            </Link>
-
-            <Link
-              href="#"
-              aria-label="Dribbble"
-              className="hover:opacity-75 transition-opacity"
-            >
-              <img
-                src="/assets/icons/code_icon.svg" // Ganti dengan path Anda
-                alt="Dribbble"
-                className="w-6 h-6"
-              />
-            </Link>
-
-            <Link
-              href="#"
-              aria-label="Facebook"
-              className="hover:opacity-75 transition-opacity"
-            >
-              <img
-                src="/assets/icons/code_icon.svg" // Ganti dengan path Anda
-                alt="Facebook"
-                className="w-6 h-6"
-              />
-            </Link>
+            </a>
           </div>
         </div>
       </div>

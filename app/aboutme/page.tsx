@@ -6,6 +6,7 @@ import Portfolio from "../components/Portfolio";
 import Skills from "../components/Skills";
 import WorkExperience from "../components/WorkExperience";
 import EducationHistory from "../components/EducationHistory";
+import ActivityAndProjects from "../components/ActivityAndProjects";
 import Footer from "../components/Footer";
 
 export default function About() {
@@ -14,11 +15,12 @@ export default function About() {
       <Navbar />
       <Hero />
       <AboutMe />
+      <EducationHistory />
+      <WorkExperience />
+      <ActivityAndProjects />
       <Services />
       <Portfolio />
       <Skills />
-      <EducationHistory />
-      <WorkExperience />
       <Footer />
     </div>
   );
