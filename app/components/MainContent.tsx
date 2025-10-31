@@ -54,7 +54,7 @@ export default async function MainContent() {
           </h1>
           {/* Responsive: text-lg di mobile, text-xl di desktop */}
           <p className="text-lg md:text-xl font-medium text-color-primary">
-            Code. Design. Deploy. Repeat.
+            Design. Code. Deploy. Repeat.
           </p>
           <Link href="/projects">
             <button className="mt-6 background-color-blue text-white py-3 px-6 rounded-lg font-medium hover:cursor-pointer">
@@ -77,7 +77,7 @@ export default async function MainContent() {
           />
           Career Stats
         </h2>
-        
+
         {/* TIDAK ADA PERUBAHAN DI SINI:
           Tetap "xl:grid-cols-4" sesuai permintaan Anda sebelumnya.
         */}
@@ -122,7 +122,7 @@ export default async function MainContent() {
           />
           Featured Projects
         </h2>
-        
+
         {/* ==================================================
           PERUBAHAN DI SINI:
           Lama: "flex flex-col gap-4 md:flex-row ... lg:flex-col lg:overflow-x-hidden lg:pb-0"
