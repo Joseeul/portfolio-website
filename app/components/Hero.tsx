@@ -4,7 +4,7 @@ import Link from "next/link";
 
 export default function Hero() {
   return (
-    <section className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
+    <section className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24 background-color-primary">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
         {/* Kolom Kiri: Teks */}
         <div className="space-y-6 z-40">

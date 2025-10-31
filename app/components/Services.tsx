@@ -35,7 +35,7 @@ const serviceData = [
 
 export default function Services() {
   return (
-    <section className="bg-white text-brand-dark py-24 sm:py-32">
+    <section className="background-color-primary text-brand-dark py-24 sm:py-32">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         <div className="text-center max-w-3xl mx-auto">

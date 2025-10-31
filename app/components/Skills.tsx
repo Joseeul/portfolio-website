@@ -106,7 +106,7 @@ const SkillIcon: React.FC<{ skill: Skill }> = ({ skill }) => (
 // Komponen Utama
 export default function Skills() {
   return (
-    <section className="bg-white py-24 sm:py-32">
+    <section className="background-color-primary py-24 sm:py-32">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col items-center text-center mb-16 md:mb-20">
           <p className="text-xl md:text-2xl text-color-primary">

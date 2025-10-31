@@ -46,7 +46,7 @@ const TimelineDot: React.FC<{ type: "outline" | "solid" }> = ({ type }) => {
 export default function EducationHistory() {
   return (
     // Section dengan background putih
-    <section className="bg-white text-brand-dark-blue py-24 sm:py-32">
+    <section className="text-brand-dark-blue py-24 sm:py-32 background-color-primary">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Judul Section */}
         <div className="text-center mb-16 md:mb-20 text-color-blue">

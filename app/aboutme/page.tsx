@@ -11,7 +11,7 @@ import Footer from "../components/Footer";
 
 export default function About() {
   return (
-    <div className="min-h-screen overflow-x-hidden">
+    <div className="min-h-screen overflow-x-hidden background-color-primary">
       <Navbar />
       <Hero />
       <AboutMe />
