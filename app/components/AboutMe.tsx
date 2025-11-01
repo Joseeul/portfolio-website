@@ -51,7 +51,7 @@ export default async function AboutMe() {
           {/* Stat 2: Years of Experience */}
           <div className="text-center">
             <span className="block text-6xl lg:text-7xl font-bold text-white">
-              10+
+              3
             </span>
             <span className="block text-lg text-white mt-2">
               Years of Experience
