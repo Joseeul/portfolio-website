@@ -1,17 +1,28 @@
 "use client";
 
-// 1. Import Swiper untuk carousel
+// 1. Import Swiper
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
 
-// 2. Import ikon panah untuk navigasi
+// 2. Import ikon
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/24/outline";
 
-// 3. Import CSS untuk Swiper
+// 3. Import CSS Swiper
 import "swiper/css";
 import "swiper/css/navigation";
 
-// Data untuk skill, sesuai dengan gambar
+// --- TAMBAHAN: Import hook dari Framer Motion ---
+import {
+  motion,
+  useMotionValue,
+  useTransform,
+  useInView,
+  animate,
+} from "framer-motion";
+import { useEffect, useRef } from "react";
+// --- AKHIR TAMBAHAN ---
+
+// Data (tidak berubah)
 const skillsData = [
   { name: "Mobile App Development", percentage: 90 },
   { name: "Web Development", percentage: 90 },
@@ -20,7 +31,7 @@ const skillsData = [
 ];
 
 /**
- * Komponen terpisah untuk membuat bilah kemajuan melingkar
+ * Komponen SkillCircle (Sudah Dimodifikasi)
  */
 const SkillCircle = ({
   percentage,
@@ -29,22 +40,50 @@ const SkillCircle = ({
   percentage: number;
   name: string;
 }) => {
-  // Pengaturan SVG
+  // Pengaturan SVG (tidak berubah)
   const strokeWidth = 10;
-  const radius = 52; // 52px radius + 5px (setengah stroke) = 57px
-  const viewBox = 120; // Ukuran total viewBox 120x120
+  const radius = 52;
+  const viewBox = 120;
   const circumference = 2 * Math.PI * radius;
-  const offset = circumference - (percentage / 100) * circumference;
+
+  // --- TAMBAHAN: Setup animasi ---
+  // 1. Ref untuk mendeteksi 'in view'
+  const ref = useRef(null);
+  // 2. 'once: true' agar animasi hanya jalan sekali
+  const isInView = useInView(ref, { once: true });
+
+  // 3. 'motionValue' yang akan kita animasikan dari 0 ke 'percentage'
+  const animatedPercentage = useMotionValue(0);
+
+  // 4. Transformasi untuk 'strokeDashoffset' (untuk lingkaran)
+  const animatedOffset = useTransform(animatedPercentage, (value) => {
+    return circumference - (value / 100) * circumference;
+  });
+
+  // 5. Transformasi untuk Teks (dibulatkan)
+  const roundedPercentage = useTransform(animatedPercentage, (value) => {
+    return `${Math.round(value)}%`;
+  });
+
+  // 6. 'useEffect' untuk memicu animasi saat terlihat
+  useEffect(() => {
+    if (isInView) {
+      animate(animatedPercentage, percentage, {
+        duration: 1.5, // Durasi animasi 1.5 detik
+        ease: "easeOut",
+      });
+    }
+  }, [isInView, percentage, animatedPercentage]);
+  // --- AKHIR TAMBAHAN ---
 
   return (
-    <div className="flex flex-col items-center text-center">
+    // <-- Tambahkan 'ref' di sini
+    <div className="flex flex-col items-center text-center" ref={ref}>
       <div className="relative h-40 w-40">
         <svg className="h-full w-full" viewBox={`0 0 ${viewBox} ${viewBox}`}>
-          {/* 1. Bagian <defs> dan <linearGradient> DIHAPUS dari sini */}
-
-          {/* Lingkaran Latar Belakang (Track) */}
+          {/* Lingkaran Latar Belakang (tidak berubah) */}
           <circle
-            className="text-color-primary" // Warna track
+            className="text-color-primary"
             strokeWidth={strokeWidth}
             stroke="currentColor"
             fill="transparent"
@@ -53,37 +92,37 @@ const SkillCircle = ({
             cy={viewBox / 2}
           />
 
-          {/* Lingkaran Kemajuan (Progress) */}
-          <circle
-            // 2. Tambahkan className "text-white" untuk warna polos
+          {/* <-- Ubah 'circle' menjadi 'motion.circle' */}
+          <motion.circle
             className="text-white"
-            // 3. Ubah 'stroke' dari "url(#skillGradient)" menjadi "currentColor"
             stroke="currentColor"
             strokeWidth={strokeWidth}
-            strokeLinecap="round" // Ujung bulat
+            strokeLinecap="round"
             fill="transparent"
             r={radius}
             cx={viewBox / 2}
             cy={viewBox / 2}
             style={{
               strokeDasharray: circumference,
-              strokeDashoffset: offset,
+              // <-- Gunakan 'animatedOffset' dari useTransform
+              strokeDashoffset: animatedOffset,
               transform: "rotate(-90deg)",
               transformOrigin: "50% 50%",
-              transition: "stroke-dashoffset 0.5s ease-out",
+              // <-- Hapus transisi CSS, Framer Motion yg atur
             }}
           />
 
-          {/* Teks Persentase di Tengah (Tidak berubah) */}
-          <text
+          {/* <-- Ubah 'text' menjadi 'motion.text' */}
+          <motion.text
             x="50%"
             y="50%"
             dominantBaseline="middle"
             textAnchor="middle"
             className="text-3xl font-bold fill-white"
           >
-            {percentage}%
-          </text>
+            {/* <-- Gunakan 'roundedPercentage' dari useTransform */}
+            {roundedPercentage}
+          </motion.text>
         </svg>
       </div>
       <h3 className="mt-4 text-lg font-semibold text-white">{name}</h3>
@@ -92,12 +131,10 @@ const SkillCircle = ({
 };
 
 /**
- * Komponen Utama (Menggantikan Services lama Anda)
+ * Komponen Utama (Tidak ada perubahan di sini)
  */
 export default function Skills() {
-  // Anda bisa tetap menamakannya Services jika mau
   return (
-    // Latar belakang gelap sesuai gambar
     <section className="background-color-blue text-white py-24 sm:py-32">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header Teks */}
@@ -114,24 +151,22 @@ export default function Skills() {
           <Swiper
             modules={[Navigation]}
             spaceBetween={30}
-            slidesPerView={1} // Tampilkan 1 di mobile
+            slidesPerView={1}
             navigation={{
               nextEl: ".swiper-button-next-custom",
               prevEl: ".swiper-button-prev-custom",
             }}
             breakpoints={{
-              // Tampilkan 2 di tablet
               768: {
                 slidesPerView: 2,
                 spaceBetween: 40,
               },
-              // Tampilkan 3 di desktop
               1024: {
                 slidesPerView: 3,
                 spaceBetween: 50,
               },
             }}
-            className="pb-10!" // Beri ruang di bawah jika perlu pagination
+            className="pb-10!"
           >
             {skillsData.map((skill) => (
               <SwiperSlide key={skill.name} className="flex justify-center">
