@@ -1,7 +1,28 @@
-// components/AboutMe.tsx
-import React from "react";
+import { getGithubContributions } from "@/lib/github";
+import { supabase } from "@/lib/supabaseClient";
+import AnimatedCounter from "./AnimatedCounter";
 
-export default function AboutMe() {
+async function getProjectCount(): Promise<number> {
+  const { count, error } = await supabase
+    .from("projects")
+    .select("*", { count: "exact", head: true });
+
+  if (error) {
+    console.error("Error fetching project count:", error);
+    return 0;
+  }
+
+  return count || 0;
+}
+
+export default async function AboutMe() {
+  const [totalContributions, totalProjectCount] = await Promise.all([
+    getGithubContributions(),
+    getProjectCount(),
+  ]);
+
+  const classNameUntukAngka = "block text-6xl lg:text-7xl font-bold text-white";
+
   return (
     // Section utama dengan background gelap dan posisi relatif
     <section className="background-color-blue text-white py-24 sm:py-32 relative overflow-hidden">
@@ -24,17 +45,18 @@ export default function AboutMe() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
           {/* Stat 1: Projects Done */}
           <div className="text-center">
-            <span className="block text-6xl lg:text-7xl font-bold text-white">
-              502
+            <AnimatedCounter
+              toValue={totalProjectCount}
+              className={classNameUntukAngka}
+            />
+            <span className="block text-lg text-white mt-2">
+              Total Projects
             </span>
-            <span className="block text-lg text-white mt-2">Projects Done</span>
           </div>
 
           {/* Stat 2: Years of Experience */}
           <div className="text-center">
-            <span className="block text-6xl lg:text-7xl font-bold text-white">
-              10+
-            </span>
+            <AnimatedCounter toValue={3} className={classNameUntukAngka} />
             <span className="block text-lg text-white mt-2">
               Years of Experience
             </span>
@@ -42,21 +64,16 @@ export default function AboutMe() {
 
           {/* Stat 3: Clients Served */}
           <div className="text-center">
-            <span className="block text-6xl lg:text-7xl font-bold text-white">
-              273+
-            </span>
+            <AnimatedCounter
+              toValue={totalContributions || 0}
+              className={classNameUntukAngka}
+            />
             <span className="block text-lg text-white mt-2">
-              Clients Served
+              GitHub Contribution
             </span>
           </div>
         </div>
       </div>
-
-      {/* Lingkaran Merah Dekoratif (di belakang konten) */}
-      <div
-        className="absolute w-80 h-80 md:w-96 md:h-96 bg-brand-red rounded-full left-1/2 -translate-x-1/2 bottom-0 translate-y-1/2"
-        aria-hidden="true"
-      ></div>
     </section>
   );
 }

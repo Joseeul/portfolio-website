@@ -38,63 +38,8 @@ async function getProjectStatistics() {
   };
 }
 
-async function getToolStatistics() {
-  const toolsToCount = [
-    "React Native",
-    "Flutter",
-    "Swift",
-    "Android",
-    "ReactJS",
-    "HTML",
-    "CSS",
-    "JavaScript",
-    "Appwrite",
-    "Supabase",
-    "Firebase",
-    "MongoDB",
-    "PostgreSQL",
-    "MySQL",
-    "Next.js",
-    "React",
-    "Node.js",
-    "Express.js",
-    "Tailwind CSS",
-    "Bootstrap",
-  ];
-
-  // Buat array berisi promise untuk setiap kueri 'count'
-  const countPromises = toolsToCount.map((tool) => {
-    return supabase
-      .from("projects") // Ganti 'projects' dengan nama tabel Anda
-      .select("*", { count: "exact", head: true })
-      .contains("tools_used", [tool]); // .contains() untuk mencari item dalam array
-  });
-
-  // Jalankan semua kueri 'count' secara paralel
-  const results = await Promise.all(countPromises);
-
-  // Map hasil kueri ke format yang kita inginkan
-  const toolStats = results.map((result, index) => {
-    if (result.error) {
-      console.error(
-        `Error counting ${toolsToCount[index]}:`,
-        result.error.message
-      );
-    }
-    return {
-      label: toolsToCount[index],
-      value: result.count || 0,
-    };
-  });
-
-  return toolStats;
-}
-
 export default async function Statics() {
-  const [stats, toolStats] = await Promise.all([
-    getProjectStatistics(),
-    getToolStatistics(), // Panggil fungsi baru
-  ]);
+  const [stats] = await Promise.all([getProjectStatistics()]);
 
   const projectStats = [
     { label: "All Projects", value: stats.all },
@@ -120,9 +65,9 @@ export default async function Statics() {
             <GitHubActivityCalendar />
           </div>
         </div>
-        
+
         {/* PERUBAHAN: flex-col (mobile), lg:flex-row (desktop), dan gap-5 */}
-        <div className="flex flex-col lg:flex-row justify-between items-start mt-5 gap-5">
+        <div className="flex flex-col lg:flex-row items-start mt-5 gap-5">
           {/* PERUBAHAN: w-full (mobile), lg:w-xs (desktop) */}
           <img
             src="https://github-readme-stats.vercel.app/api/top-langs/?username=joseeul"
@@ -140,23 +85,6 @@ export default async function Statics() {
                   <div className="flex justify-between items-center text-gray-700">
                     <span className="font-medium">{stat.label}</span>
                     <span className="font-bold text-lg">{stat.value}</span>
-                  </div>
-                  <hr className="mt-2 border-gray-100" />
-                </div>
-              ))}
-            </div>
-          </div>
-          {/* PERUBAHAN: w-full (mobile), lg:w-lg (desktop), h-auto (mobile), lg:h-76 (desktop), dan overflow-y-auto */}
-          <div className="bg-white w-full lg:w-lg p-5 rounded-lg border-custom-color border-[0.5px] h-auto lg:h-76 overflow-y-auto">
-            <h2 className="text-xl font-semibold text-gray-800 mb-6">
-              All Time Tools Used Statics
-            </h2>
-            <div className="space-y-4">
-              {toolStats.map((tool) => (
-                <div key={tool.label}>
-                  <div className="flex justify-between items-center text-gray-700">
-                    <span className="font-medium">{tool.label}</span>
-                    <span className="font-bold text-lg">{tool.value}</span>
                   </div>
                   <hr className="mt-2 border-gray-100" />
                 </div>
