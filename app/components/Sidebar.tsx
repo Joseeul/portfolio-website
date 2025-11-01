@@ -34,7 +34,7 @@ export default function Sidebar() {
       </div>
 
       <a
-        href="https://drive.google.com/file/d/1_Vu5adRaDTRt2sNlhinvp_Rt0In8i2sZ/view?usp=sharing"
+        href="https://drive.google.com/file/d/1JvHyZUpFZvyWiuEvkWvNrM5FiHW-AkVB/view?usp=sharing"
         target="_blank"
       >
         <button className="w-full background-color-blue text-white py-2 px-4 rounded-lg font-gabarito font-medium hover:cursor-pointer mb-8">
