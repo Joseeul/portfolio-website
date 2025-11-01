@@ -1,39 +1,33 @@
-// components/Hero.tsx
-"use client"; // <-- Tambahkan ini
+"use client";
 
 import Link from "next/link";
-import { motion } from "framer-motion"; // <-- Impor motion
+import { motion } from "framer-motion";
 
 export default function Hero() {
-  // Varian untuk container (parent) yang akan mengatur "stagger"
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.2, // Jeda 0.2 detik antar-elemen
+        staggerChildren: 0.2,
       },
     },
   };
 
-  // Varian untuk item (children)
   const itemVariants = {
-    hidden: { opacity: 0, y: 20 }, // Mulai dari 20px ke bawah & transparan
-    visible: { opacity: 1, y: 0 }, // Selesai di posisi 0 (normal) & terlihat
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0 },
   };
 
   return (
     <section className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24 background-color-primary">
       <div className="flex items-center justify-center min-h-[500px] md:min-h-[600px]">
-        {/* Bungkus dengan 'motion.div' dan terapkan varian container
-        */}
         <motion.div
           className="space-y-6 z-40 text-center"
           variants={containerVariants}
           initial="hidden"
           animate="visible"
         >
-          {/* Terapkan 'itemVariants' ke setiap elemen di dalamnya */}
           <motion.span
             className="text-lg font-medium text-color-primary"
             variants={itemVariants}

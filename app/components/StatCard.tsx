@@ -1,5 +1,4 @@
 import Image from "next/image";
-import { ReactNode } from "react";
 
 type StatCardProps = {
   icon: string;
@@ -15,7 +14,7 @@ export default function StatCard({
   subLabel,
 }: StatCardProps) {
   return (
-    <div className="bg-white p-5 rounded-lg border border-custom-color border-[0.5px]">
+    <div className="bg-white p-5 rounded-lg border-custom-color border-[0.5px]">
       <div className="flex items-center gap-2">
         <Image src={icon} alt="icon" width={16} height={16} />
         <h3 className="text-sm font-semibold text-gray-600 font-gabarito">

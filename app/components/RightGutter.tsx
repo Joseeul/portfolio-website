@@ -1,6 +1,3 @@
-// @/components/RightGutter.tsx (atau di mana pun file Anda berada)
-
-import Image from "next/image";
 import RightGutterClient from "./RightGutterClient";
 import { getRecentActivity, type ActivityItem } from "@/lib/github";
 

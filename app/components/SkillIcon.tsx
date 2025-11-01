@@ -1,35 +1,30 @@
-// components/SkillIcon.tsx
-"use client"; // <-- Tandai sebagai Client Component
+"use client";
 
 import Image from "next/image";
-import { motion } from "framer-motion"; // <-- Impor motion
+import { motion } from "framer-motion";
 
-// Tipe data (salin dari file Skills.tsx)
 interface Skill {
   name: string;
   iconSrc: string;
 }
 
-// Props untuk komponen ini
 type Props = {
   skill: Skill;
 };
 
-// Varian animasi
 const iconVariants = {
-  hidden: { opacity: 0, scale: 0.8, y: 10 }, // Mulai: transparan, kecil, 10px ke bawah
-  visible: { opacity: 1, scale: 1, y: 0 }, // Selesai: terlihat, ukuran normal, di posisi 0
+  hidden: { opacity: 0, scale: 0.8, y: 10 },
+  visible: { opacity: 1, scale: 1, y: 0 },
 };
 
 export default function SkillIcon({ skill }: Props) {
   return (
-    // Bungkus dengan <motion.div>
     <motion.div
       variants={iconVariants}
       initial="hidden"
-      whileInView="visible" // Picu animasi saat masuk ke layar
-      viewport={{ once: true, amount: 0.5 }} // Animasi sekali, saat 50% terlihat
-      transition={{ duration: 0.3, ease: "easeOut" }} // Transisi cepat & halus
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.5 }}
+      transition={{ duration: 0.3, ease: "easeOut" }}
       className="flex flex-col items-center justify-start text-center p-4"
     >
       <div className="relative w-16 h-16 md:w-20 md:h-20 mb-3">

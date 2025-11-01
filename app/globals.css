@@ -1,9 +1,9 @@
 @import "tailwindcss";
 
 @font-face {
-  font-family: "Gabarito"; /* Beri nama keluarga font */
+  font-family: "Gabarito"; 
   src: url("/assets/fonts/Gabarito-Regular.ttf") format("truetype");
-  font-weight: 400; /* Regular */
+  font-weight: 400; 
   font-style: normal;
   font-display: swap;
 }
@@ -11,7 +11,7 @@
 @font-face {
   font-family: "Gabarito";
   src: url("/assets/fonts/Gabarito-Medium.ttf") format("truetype");
-  font-weight: 500; /* Medium */
+  font-weight: 500; 
   font-style: normal;
   font-display: swap;
 }
@@ -19,7 +19,7 @@
 @font-face {
   font-family: "Gabarito";
   src: url("/assets/fonts/Gabarito-SemiBold.ttf") format("truetype");
-  font-weight: 600; /* SemiBold */
+  font-weight: 600; 
   font-style: normal;
   font-display: swap;
 }
@@ -27,7 +27,7 @@
 @font-face {
   font-family: "Gabarito";
   src: url("/assets/fonts/Gabarito-Bold.ttf") format("truetype");
-  font-weight: 700; /* Bold */
+  font-weight: 700; 
   font-style: normal;
   font-display: swap;
 }
@@ -35,7 +35,7 @@
 @font-face {
   font-family: "Gabarito";
   src: url("/assets/fonts/Gabarito-ExtraBold.ttf") format("truetype");
-  font-weight: 800; /* ExtraBold */
+  font-weight: 800; 
   font-style: normal;
   font-display: swap;
 }
@@ -43,7 +43,7 @@
 @font-face {
   font-family: "Gabarito";
   src: url("/assets/fonts/Gabarito-Black.ttf") format("truetype");
-  font-weight: 900; /* Black */
+  font-weight: 900; 
   font-style: normal;
   font-display: swap;
 }

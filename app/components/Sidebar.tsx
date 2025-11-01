@@ -17,10 +17,8 @@ export default function Sidebar() {
   const pathname = usePathname();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-  // Konten sidebar kita pindahkan ke variabel agar bisa di-reuse
   const sidebarContent = (
     <>
-      {/* Bagian Profile */}
       <div className="flex flex-col items-center mb-8">
         <div className="w-24 h-24 rounded-full overflow-hidden flex items-center justify-center mb-4">
           <Image
@@ -35,12 +33,15 @@ export default function Sidebar() {
         <p className="text-sm text-gray-500">Mobile Application Developer</p>
       </div>
 
-      {/* Tombol Resume */}
-      <button className="w-full background-color-blue text-white py-2 px-4 rounded-lg font-gabarito font-medium hover:cursor-pointer mb-8">
-        See Resume
-      </button>
+      <a
+        href="https://drive.google.com/file/d/1_Vu5adRaDTRt2sNlhinvp_Rt0In8i2sZ/view?usp=sharing"
+        target="_blank"
+      >
+        <button className="w-full background-color-blue text-white py-2 px-4 rounded-lg font-gabarito font-medium hover:cursor-pointer mb-8">
+          See Resume
+        </button>
+      </a>
 
-      {/* Menu Navigasi */}
       <nav className="flex-1 mb-8">
         <ul>
           <SidebarNavItem
@@ -76,7 +77,6 @@ export default function Sidebar() {
         </ul>
       </nav>
 
-      {/* Link Sosial Media */}
       <div>
         <h3 className="text-xl font-medium text-color-primary mb-4">Social</h3>
         <div className="flex justify-around items-center">
@@ -125,7 +125,6 @@ export default function Sidebar() {
 
   return (
     <>
-      {/* 1. Tombol Hamburger (Hanya Mobile) - Style disamakan */}
       <button
         onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
         className="lg:hidden fixed top-5 left-5 z-50 p-2 bg-white rounded-full shadow-lg text-color-primary"
@@ -164,12 +163,10 @@ export default function Sidebar() {
         )}
       </button>
 
-      {/* 2. Sidebar Desktop (Hanya LG ke atas) */}
       <aside className="hidden lg:flex w-64 shrink-0 bg-white rounded-lg border-custom-color border-[0.5px] p-6 flex-col">
         {sidebarContent}
       </aside>
 
-      {/* 3. Backdrop (Hanya Mobile saat menu terbuka) */}
       {isMobileMenuOpen && (
         <div
           onClick={() => setIsMobileMenuOpen(false)}
@@ -178,19 +175,17 @@ export default function Sidebar() {
         />
       )}
 
-      {/* 4. Menu Mobile (Drawer) - Logika disamakan */}
       <aside
         className={`
-          ${/* ----- Style Mobile: Panel geser dari kiri ----- */ ""}
+          
           fixed top-0 left-0 w-64 h-full bg-white p-6 flex flex-col z-40 overflow-y-auto
           transition-transform duration-300 ease-in-out
           ${isMobileMenuOpen ? "translate-x-0" : "-translate-x-full"}
 
-          ${/* ----- Style Desktop: Sembunyikan ----- */ ""}
+          
           lg:hidden
         `}
       >
-        {/* Tombol Tutup (X) internal dihapus, karena sudah dihandle tombol utama */}
         {sidebarContent}
       </aside>
     </>

@@ -24,16 +24,12 @@ export default async function AboutMe() {
   const classNameUntukAngka = "block text-6xl lg:text-7xl font-bold text-white";
 
   return (
-    // Section utama dengan background gelap dan posisi relatif
     <section className="background-color-blue text-white py-24 sm:py-32 relative overflow-hidden">
-      {/* Kontainer untuk konten agar tidak terlalu lebar dan punya z-index di atas lingkaran */}
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Judul */}
         <h2 className="text-4xl md:text-5xl font-bold text-center mb-8">
           About Me
         </h2>
 
-        {/* Paragraf Deskripsi */}
         <p className="text-lg text-white text-center max-w-3xl mx-auto mb-20">
           I am currently a fifth-semester student at Bina Nusantara University,
           majoring in Mobile Application & Technology. Beyond developing mobile
@@ -41,9 +37,7 @@ export default async function AboutMe() {
           development.
         </p>
 
-        {/* Grid untuk Statistik */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
-          {/* Stat 1: Projects Done */}
           <div className="text-center">
             <AnimatedCounter
               toValue={totalProjectCount}
@@ -54,7 +48,6 @@ export default async function AboutMe() {
             </span>
           </div>
 
-          {/* Stat 2: Years of Experience */}
           <div className="text-center">
             <AnimatedCounter toValue={3} className={classNameUntukAngka} />
             <span className="block text-lg text-white mt-2">
@@ -62,7 +55,6 @@ export default async function AboutMe() {
             </span>
           </div>
 
-          {/* Stat 3: Clients Served */}
           <div className="text-center">
             <AnimatedCounter
               toValue={totalContributions || 0}
