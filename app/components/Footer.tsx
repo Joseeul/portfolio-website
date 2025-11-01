@@ -1,14 +1,10 @@
-// components/Footer.tsx
 import Link from "next/link";
 
 export default function Footer() {
   return (
-    // Pastikan Anda memiliki 'brand-dark' dan 'brand-red' di tailwind.config.ts
     <footer className="background-color-blue text-white py-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Bagian Atas: Navigasi & Logo */}
         <div className="flex flex-col md:flex-row justify-between items-center space-y-8 md:space-y-0 mb-16 text-center md:text-left">
-          {/* Link Kiri */}
           <div className="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-8 text-lg font-medium order-2 md:order-1">
             <Link href="/" className="hover:text-gray-300 transition-colors">
               Home
@@ -21,14 +17,12 @@ export default function Footer() {
             </Link>
           </div>
 
-          {/* Logo Tengah */}
           <div className="order-1 md:order-2">
             <Link href="/" className="text-3xl font-bold">
               Jose<span className="text-brand-red"> Andreas</span>
             </Link>
           </div>
 
-          {/* Link Kanan */}
           <div className="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-8 text-lg font-medium order-3">
             <Link
               href="/certificate"
@@ -45,11 +39,7 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Bagian Bawah: Media Sosial */}
-
         <div className="flex space-x-6">
-          {/* --- Menggunakan <img> tag --- */}
-
           <a
             href="https://www.linkedin.com/in/jose-andreas-64b857387/"
             aria-label="Linkedin"
@@ -57,7 +47,7 @@ export default function Footer() {
             className="hover:opacity-75 transition-opacity"
           >
             <img
-              src="/assets/icons/linkedin_white.svg" // Ganti dengan path Anda
+              src="/assets/icons/linkedin_white.svg"
               alt="Linkedin"
               className="w-6 h-6"
             />
@@ -70,7 +60,7 @@ export default function Footer() {
             className="hover:opacity-75 transition-opacity"
           >
             <img
-              src="/assets/icons/github_white.svg" // Ganti dengan path Anda
+              src="/assets/icons/github_white.svg"
               alt="GitHub"
               className="w-6 h-6"
             />
@@ -83,7 +73,7 @@ export default function Footer() {
             className="hover:opacity-75 transition-opacity"
           >
             <img
-              src="/assets/icons/discord_white.svg" // Ganti dengan path Anda
+              src="/assets/icons/discord_white.svg"
               alt="Discord"
               className="w-6 h-6"
             />
@@ -96,7 +86,7 @@ export default function Footer() {
             className="hover:opacity-75 transition-opacity"
           >
             <img
-              src="/assets/icons/instagram_white.svg" // Ganti dengan path Anda
+              src="/assets/icons/instagram_white.svg"
               alt="Instagram"
               className="w-6 h-6"
             />

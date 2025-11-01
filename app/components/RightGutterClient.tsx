@@ -63,26 +63,19 @@ const ActivityText = ({
   }
 };
 
-// --- Interface untuk Props ---
-
 interface RightGutterClientProps {
   recentActivity: ActivityItem[] | null;
   username: string;
 }
 
-// --- Komponen Utama (Client) ---
-
 export default function RightGutterClient({
   recentActivity,
   username,
 }: RightGutterClientProps) {
-  // State untuk mengelola menu mobile
   const [isOpen, setIsOpen] = useState(false);
 
-  // Konten menu Anda kita buat jadi variabel agar bisa dipakai di 2 tempat
   const menuContent = (
     <div className="border-custom-color">
-      {/* Skill Sets */}
       <section className="mb-8">
         <h2 className="text-xl font-semibold mb-4 flex items-center gap-2 font-gabarito text-color-blue">
           <Image
@@ -94,7 +87,6 @@ export default function RightGutterClient({
           Skill Sets
         </h2>
 
-        {/* Mobile App Development */}
         <div className="mb-4">
           <h3 className="text-sm font-semibold text-color-primary mb-3">
             Mobile App Development
@@ -108,7 +100,6 @@ export default function RightGutterClient({
           </div>
         </div>
 
-        {/* Web Development */}
         <div className="mb-4">
           <h3 className="text-sm font-semibold text-color-primary mb-3">
             Web Development
@@ -120,7 +111,6 @@ export default function RightGutterClient({
           </div>
         </div>
 
-        {/* Backend Development */}
         <div className="mb-4">
           <h3 className="text-sm font-semibold text-color-primary mb-3">
             Backend Development
@@ -139,7 +129,6 @@ export default function RightGutterClient({
           </div>
         </div>
 
-        {/* Frameworks & Libraries */}
         <div>
           <h3 className="text-sm font-semibold text-color-primary mb-3">
             Frameworks & Libraries
@@ -161,7 +150,6 @@ export default function RightGutterClient({
 
       <hr className="my-6 border-gray-200" />
 
-      {/* Recent Activity */}
       <section>
         <h2 className="text-xl font-semibold mb-4 flex items-center gap-2 text-color-blue">
           <Image
@@ -205,14 +193,12 @@ export default function RightGutterClient({
 
   return (
     <>
-      {/* Tombol Hamburger (Hanya Tampil di Mobile) */}
       <button
         onClick={() => setIsOpen(!isOpen)}
         className="lg:hidden fixed top-5 right-5 z-50 p-2 bg-white rounded-full shadow-lg text-color-primary"
         aria-label="Toggle menu"
       >
         {isOpen ? (
-          // Ikon 'X' untuk menutup
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="h-6 w-6"
@@ -228,7 +214,6 @@ export default function RightGutterClient({
             />
           </svg>
         ) : (
-          // Ikon Hamburger
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="h-6 w-6"
@@ -246,7 +231,6 @@ export default function RightGutterClient({
         )}
       </button>
 
-      {/* Backdrop (Hanya Tampil di Mobile saat menu terbuka) */}
       {isOpen && (
         <div
           onClick={() => setIsOpen(false)}
@@ -255,15 +239,14 @@ export default function RightGutterClient({
         />
       )}
 
-      {/* Konten Sidebar (Gabungan Logika Mobile & Desktop) */}
       <aside
         className={`
-          ${/* ----- Style Mobile: Panel geser dari kanan ----- */ ""}
+          
           fixed top-0 right-0 h-full w-80 bg-white p-6 overflow-y-auto z-40
           transition-transform duration-300 ease-in-out
           ${isOpen ? "translate-x-0" : "translate-x-full"}
 
-          ${/* ----- Style Desktop: Kembali ke style asli Anda ----- */ ""}
+          
           lg:translate-x-0 lg:static lg:h-auto lg:w-80 lg:shrink-0
            lg:rounded-lg lg:border-custom-color lg:border-[0.5px] lg:p-6 lg:block lg:overflow-y-auto border-custom-color
         `}

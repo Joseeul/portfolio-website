@@ -15,7 +15,6 @@ export default function ProjectList({ projects }: { projects: Project[] }) {
   const inactiveButtonClass =
     "text-color-blue border-[0.5px] border-custom-color";
 
-  // Logika untuk memfilter proyek berdasarkan tab yang aktif
   const filteredProjects = projects.filter((project) => {
     if (activeTab === "all") return true;
     return project.project_type === activeTab;
@@ -23,7 +22,6 @@ export default function ProjectList({ projects }: { projects: Project[] }) {
 
   return (
     <>
-      {/* Tab Filter */}
       <div className="flex gap-4 mb-8">
         <button
           className={`${baseButtonClass} ${
@@ -53,15 +51,13 @@ export default function ProjectList({ projects }: { projects: Project[] }) {
         </button>
       </div>
 
-      {/* Grid Proyek */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-        {/* Gunakan 'filteredProjects' untuk me-render kartu */}
         {filteredProjects.map((project) => (
           <ProjectCard
-            key={project.id} // Gunakan ID unik dari database
+            key={project.id}
             title={project.title}
-            tools={project.tools_used} // Sesuaikan nama prop
-            thumbnailUrl={project.thumbnail_url} // Sesuaikan nama prop
+            tools={project.tools_used}
+            thumbnailUrl={project.thumbnail_url}
             githubLink={project.github_link}
           />
         ))}

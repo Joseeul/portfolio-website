@@ -4,10 +4,9 @@ import Sidebar from "../components/Sidebar";
 import CertificateCard from "../components/CertificateCard";
 
 async function getCertificates() {
-  // Ambil semua kolom, urutkan berdasarkan kapan dibuat
   const { data, error } = await supabase
     .from("certificates")
-    .select("*") 
+    .select("*")
     .order("created_at", { ascending: true });
 
   if (error) {
@@ -23,13 +22,10 @@ export default async function Certificate() {
 
   return (
     <div className="flex min-h-screen background-color-primary p-5">
-      {/* Sidebar Kiri */}
       <Sidebar />
 
-      {/* Konten Utama (Grid Sertifikat) */}
       <main className="flex-1 p-8 overflow-y-auto">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-          {/* Loop data untuk membuat kartu */}
           {certificates.map((cert) => (
             <CertificateCard key={cert.id} certificate={cert} />
           ))}

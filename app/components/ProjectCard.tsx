@@ -1,4 +1,3 @@
-import { PhotoIcon } from "@heroicons/react/24/outline";
 import Image from "next/image";
 
 type ProjectCardProps = {
@@ -17,7 +16,6 @@ export default function ProjectCard({
   return (
     <div className="bg-white rounded-lg shadow-md overflow-hidden w-full">
       <a href={githubLink} target="_blank">
-        {/* Gambar Proyek dari Supabase */}
         <div className="h-40 bg-gray-200 relative">
           <Image
             src={thumbnailUrl}
@@ -28,7 +26,6 @@ export default function ProjectCard({
           />
         </div>
 
-        {/* Konten Kartu */}
         <div className="p-4">
           <h3 className="text-lg font-semibold mb-2">{title}</h3>
           <p className="text-sm text-gray-500 mb-3">Tools:</p>

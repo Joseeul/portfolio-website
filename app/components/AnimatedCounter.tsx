@@ -1,5 +1,4 @@
-// components/AnimatedCounter.tsx
-"use client"; // <-- Ini adalah kuncinya!
+"use client";
 
 import { useEffect, useRef } from "react";
 import {
@@ -12,35 +11,29 @@ import {
 
 type Props = {
   toValue: number;
-  className?: string; // Untuk meneruskan className dari parent
+  className?: string;
 };
 
 export default function AnimatedCounter({ toValue, className }: Props) {
   const count = useMotionValue(0);
   const rounded = useTransform(count, (latest) => Math.round(latest));
   const ref = useRef(null);
-  
-  // 'once: true' berarti animasi hanya berjalan sekali saat terlihat
+
   const isInView = useInView(ref, { once: true });
 
   useEffect(() => {
-    // Hanya jalankan animasi jika komponen terlihat
     if (isInView) {
       const controls = animate(count, toValue, {
-        duration: 2, // Durasi animasi 2 detik
-        ease: "easeOut", // Efek 'melambat' di akhir
+        duration: 2,
+        ease: "easeOut",
       });
-      
-      // Cleanup function saat komponen unmount
+
       return () => controls.stop();
     }
   }, [isInView, toValue, count]);
 
   return (
-    <motion.span
-      ref={ref} // Kaitkan ref untuk dideteksi oleh useInView
-      className={className}
-    >
+    <motion.span ref={ref} className={className}>
       {rounded}
     </motion.span>
   );

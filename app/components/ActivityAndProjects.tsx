@@ -1,4 +1,3 @@
-// components/WorkExperience.tsx
 import React from "react";
 import AnimatedTimelineItem from "./AnimatedTimelineItem";
 
@@ -43,10 +42,8 @@ const experienceData: ExperienceItem[] = [
 
 export default function ActivityAndProjects() {
   return (
-    // Section dengan background putih
     <section className="background-color-primary text-brand-dark-blue py-24 sm:py-32">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Judul Section */}
         <div className="text-center mb-16 md:mb-20 text-color-blue">
           <h2 className="text-4xl md:text-5xl font-bold ">
             My Activities and{" "}
@@ -54,7 +51,6 @@ export default function ActivityAndProjects() {
           </h2>
         </div>
 
-        {/* Kontainer Timeline */}
         <div className="max-w-3xl mx-auto">
           <div className="relative space-y-0">
             {experienceData.map((item, index) => (

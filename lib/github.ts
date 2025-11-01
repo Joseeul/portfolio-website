@@ -1,6 +1,5 @@
-import "server-only"; // Memastikan kode ini HANYA berjalan di server
+import "server-only";
 
-// Tipe untuk respons GraphQL yang kita harapkan
 interface GitHubGraphQLResponse {
   data?: {
     user: {
@@ -21,8 +20,8 @@ export interface ActivityItem {
   repoName: string;
   date: string;
   type: ActivityType;
-  text: string; // Bisa jadi commit message or PR title
-  url: string; // URL ke commit atau PR
+  text: string;
+  url: string;
 }
 
 interface GitHubEventRepo {
@@ -32,35 +31,29 @@ interface GitHubEventRepo {
 interface GitHubEventCommit {
   message: string;
   sha: string;
-  url: string; // API URL
+  url: string;
 }
 
 interface GitHubEventPullRequest {
   title: string;
-  html_url: string; // Ini URL yang kita mau
+  html_url: string;
   merged: boolean;
 }
 
 interface GitHubEventPayload {
-  // Untuk PushEvent
   commits?: GitHubEventCommit[];
-  // Untuk PullRequestEvent
   action?: "opened" | "closed";
   pull_request?: GitHubEventPullRequest;
 }
 
 interface GitHubEvent {
   id: string;
-  type: "PushEvent" | "PullRequestEvent" | string; // Buat lebih luas
+  type: "PushEvent" | "PullRequestEvent" | string;
   repo: GitHubEventRepo;
   payload: GitHubEventPayload;
   created_at: string;
 }
 
-/**
- * Mengambil total kontribusi GitHub selama 1 tahun terakhir.
- * Menggunakan Next.js fetch dengan caching (revalidate).
- */
 export async function getGithubContributions(): Promise<number | null> {
   const GITHUB_USERNAME = process.env.GITHUB_USERNAME;
   const GITHUB_TOKEN = process.env.GITHUB_PAT;
@@ -72,8 +65,6 @@ export async function getGithubContributions(): Promise<number | null> {
     return null;
   }
 
-  // Ini adalah "setup" GraphQL Anda.
-  // Kita mendefinisikan query sebagai sebuah string.
   const query = `
     query {
       user(login: "${GITHUB_USERNAME}") {
@@ -87,16 +78,13 @@ export async function getGithubContributions(): Promise<number | null> {
   `;
 
   try {
-    // Ini adalah "eksekusi" GraphQL.
-    // Kita mengirim query sebagai body JSON ke endpoint GraphQL GitHub.
     const response = await fetch("https://api.github.com/graphql", {
       method: "POST",
       headers: {
         Authorization: `bearer ${GITHUB_TOKEN}`,
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ query }), // Kirim query di dalam { "query": "..." }
-      // Caching: Ambil data baru paling cepat setiap 1 jam (3600 detik)
+      body: JSON.stringify({ query }),
       next: { revalidate: 3600 },
     });
 
@@ -113,7 +101,6 @@ export async function getGithubContributions(): Promise<number | null> {
       throw new Error(data.errors.map((e) => e.message).join("\n"));
     }
 
-    // Ambil angkanya
     const total =
       data.data?.user.contributionsCollection.contributionCalendar
         .totalContributions;
@@ -121,7 +108,7 @@ export async function getGithubContributions(): Promise<number | null> {
     return typeof total === "number" ? total : null;
   } catch (error) {
     console.error("Gagal mengambil data kontribusi:", error);
-    return null; // Kembalikan null jika ada error
+    return null;
   }
 }
 
@@ -142,7 +129,7 @@ export async function getRecentActivity(): Promise<ActivityItem[] | null> {
           Authorization: `bearer ${GITHUB_TOKEN}`,
           Accept: "application/vnd.github.v3+json",
         },
-        next: { revalidate: 600 }, // Cache 10 menit
+        next: { revalidate: 600 },
       }
     );
 
@@ -156,15 +143,11 @@ export async function getRecentActivity(): Promise<ActivityItem[] | null> {
 
     console.log(`[DEBUG] Total event mentah diterima: ${events.length}`);
 
-    // Gunakan .reduce() untuk mem-filter, memetakan, dan membatasi (limit)
-    // data dalam satu langkah
     const activityItems = events.reduce((acc: ActivityItem[], event) => {
-      // Kita hanya ambil 5 aktivitas terbaru
       if (acc.length >= 20) {
         return acc;
       }
 
-      // Tipe 1: PushEvent (Commit)
       if (
         event.type === "PushEvent" &&
         event.payload.commits &&
@@ -177,14 +160,13 @@ export async function getRecentActivity(): Promise<ActivityItem[] | null> {
           date: event.created_at,
           repoName: event.repo.name,
           type: "COMMIT",
-          text: lastCommit.message.split("\n")[0], // Pesan commit
+          text: lastCommit.message.split("\n")[0],
           url: lastCommit.url
             .replace("api.github.com/repos", "github.com")
             .replace("/commits/", "/commit/"),
         });
       }
 
-      // Tipe 2: PullRequestEvent (Dibuka)
       if (
         event.type === "PullRequestEvent" &&
         event.payload.action === "opened" &&
@@ -195,12 +177,11 @@ export async function getRecentActivity(): Promise<ActivityItem[] | null> {
           date: event.created_at,
           repoName: event.repo.name,
           type: "PR_OPEN",
-          text: event.payload.pull_request.title, // Judul PR
-          url: event.payload.pull_request.html_url, // URL PR
+          text: event.payload.pull_request.title,
+          url: event.payload.pull_request.html_url,
         });
       }
 
-      // Tipe 3: PullRequestEvent (Di-merge)
       if (
         event.type === "PullRequestEvent" &&
         event.payload.action === "closed" &&
@@ -211,13 +192,13 @@ export async function getRecentActivity(): Promise<ActivityItem[] | null> {
           date: event.created_at,
           repoName: event.repo.name,
           type: "PR_MERGE",
-          text: event.payload.pull_request.title, // Judul PR
-          url: event.payload.pull_request.html_url, // URL PR
+          text: event.payload.pull_request.title,
+          url: event.payload.pull_request.html_url,
         });
       }
 
       return acc;
-    }, []); // Mulai dengan array kosong
+    }, []);
 
     return activityItems;
   } catch (error) {

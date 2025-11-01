@@ -20,8 +20,8 @@ export default function SidebarNavItem({
         className={`flex items-center gap-3 p-3 rounded-lg font-medium text-sm
           ${
             active
-              ? "background-color-blue-secondary text-color-blue font-semibold text-base" // Style saat aktif
-              : "text-gray-600 hover:bg-gray-100 text-base font-semibold" // Style normal
+              ? "background-color-blue-secondary text-color-blue font-semibold text-base"
+              : "text-gray-600 hover:bg-gray-100 text-base font-semibold"
           }
           transition-colors
         `}

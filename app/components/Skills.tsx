@@ -1,15 +1,12 @@
-// components/Skills.tsx
 import React from "react";
 import Image from "next/image";
 import SkillIcon from "./SkillIcon";
 
-// Tipe data untuk setiap skill
 interface Skill {
   name: string;
   iconSrc: string;
 }
 
-// Data kategori skill
 const skillCategories = [
   {
     title: "Mobile App Development",
@@ -86,7 +83,6 @@ const skillCategories = [
   },
 ];
 
-// Komponen Utama
 export default function Skills() {
   return (
     <section className="background-color-primary py-24 sm:py-32">
@@ -106,8 +102,6 @@ export default function Skills() {
 
               <div className="flex flex-wrap justify-center gap-x-4 gap-y-8">
                 {category.skills.map((skill) => (
-                  // 3. 'SkillIcon' ini sekarang adalah komponen
-                  //    Client Component teranimasi yang kita impor
                   <SkillIcon key={skill.name} skill={skill} />
                 ))}
               </div>
