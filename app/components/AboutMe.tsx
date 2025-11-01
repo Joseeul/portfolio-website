@@ -1,7 +1,25 @@
-// components/AboutMe.tsx
-import React from "react";
+import { getGithubContributions } from "@/lib/github"; 
+import { supabase } from "@/lib/supabaseClient"
 
-export default function AboutMe() {
+async function getProjectCount(): Promise<number> {
+  const { count, error } = await supabase
+    .from("projects")
+    .select("*", { count: "exact", head: true });
+
+  if (error) {
+    console.error("Error fetching project count:", error);
+    return 0;
+  }
+
+  return count || 0;
+}
+
+export default async function AboutMe() {
+  const [totalContributions, totalProjectCount] = await Promise.all([
+    getGithubContributions(),
+    getProjectCount(),
+  ]);
+
   return (
     // Section utama dengan background gelap dan posisi relatif
     <section className="background-color-blue text-white py-24 sm:py-32 relative overflow-hidden">
@@ -25,9 +43,9 @@ export default function AboutMe() {
           {/* Stat 1: Projects Done */}
           <div className="text-center">
             <span className="block text-6xl lg:text-7xl font-bold text-white">
-              502
+              {totalProjectCount}
             </span>
-            <span className="block text-lg text-white mt-2">Projects Done</span>
+            <span className="block text-lg text-white mt-2">Total Projects</span>
           </div>
 
           {/* Stat 2: Years of Experience */}
@@ -43,10 +61,10 @@ export default function AboutMe() {
           {/* Stat 3: Clients Served */}
           <div className="text-center">
             <span className="block text-6xl lg:text-7xl font-bold text-white">
-              273+
+              {totalContributions?.toString() || "0"}
             </span>
             <span className="block text-lg text-white mt-2">
-              Clients Served
+              GitHub Contribution
             </span>
           </div>
         </div>
